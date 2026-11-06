@@ -1,44 +1,234 @@
-const KEY = 'weLeadersPublicManagerV4';
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
-const stations = [
-  ['Staircase 1', 'stair1', 1],
-  ['Staircase 2', 'stair2', 1],
-  ['Staircase 3', 'stair3', 1],
-  ['First Line-up', 'first', 2],
-  ['Second Line-up', 'second', 2],
-  ['Third Line-up', 'third', 2],
-  ['School Radio', 'radio', 2]
-];
-
-let mapTimer = null, mapDayIndex = 0;
-let db = { students: [], duties: [], manager: null, admins: [] };
-let isAdmin = false, isOwner = false;
-
-try {
-  const old = JSON.parse(localStorage.getItem(KEY) || 'null');
-  if (old) db = { ...db, ...old };
-  db.admins = Array.isArray(db.admins) ? db.admins : [];
-} catch (e) {}
-
-function persist() {
-  localStorage.setItem(KEY, JSON.stringify(db));
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WE LEADERS | منصة القادة</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#f4edff,#e4f9ed);
+ color:#25203b;
 }
-
-function openLogin() {
-  document.getElementById('loginModal').classList.remove('hidden');
-  const hasMgr = !!db.manager;
-  document.getElementById('loginForm').classList.toggle('hidden', !hasMgr);
-  document.getElementById('firstSetup').classList.toggle('hidden', hasMgr);
+header{
+ background:linear-gradient(100deg,#5421a8,#168653);
+ color:white;text-align:center;padding:30px 15px;
 }
-
-function closeLogin() {
-  document.getElementById('loginModal').classList.add('hidden');
+header h1{font-size:35px;margin:0 0 10px}
+header p{margin:0}
+nav{
+ display:flex;flex-wrap:wrap;justify-content:center;
+ gap:10px;padding:15px;background:white;
+ position:sticky;top:0;z-index:5;
+ box-shadow:0 3px 10px #0001;
 }
-
-function logout() {
-  isAdmin = false;
-  isOwner = false;
-  document.body.classList.remove('admin', 'owner');
-  document.getElementById('loginBtn').classList.remove('hidden');
-  document.getElementById('logoutBtn').classList.add('hidden');
+button{
+ border:0;border-radius:10px;padding:12px 18px;
+ background:#692dbb;color:white;font-weight:bold;
+ cursor:pointer;
 }
+button:hover{opacity:.85}
+nav button:nth-child(even){background:#168653}
+main{max-width:1100px;margin:auto;padding:20px}
+section{
+ background:white;padding:22px;margin-bottom:20px;
+ border-radius:18px;box-shadow:0 5px 20px #0000000c;
+}
+h2{color:#652ab1;margin-top:0}
+input,select,textarea{
+ width:100%;padding:12px;margin:7px 0 12px;
+ border:1px solid #ddd;border-radius:9px;
+ font-size:15px;background:#fff;
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.student{
+ padding:14px;margin:9px 0;border-radius:12px;
+ background:#f4efff;border-right:5px solid #702dbb;
+ display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.student small{color:#666}
+.green{background:#e9f8ef;border-right-color:#168653}
+.hidden{display:none}
+.card{
+ background:linear-gradient(120deg,#f2eaff,#e7f8ed);
+ border-radius:12px;padding:15px;margin:10px 0;
+}
+footer{text-align:center;padding:25px;color:#65577a}
+</style>
+</head>
+<body>
+
+<header>
+<h1>WE LEADERS</h1>
+<p>المنصة الشاملة لإدارة المدرسة وتنظيم القادة</p>
+</header>
+
+<nav>
+<button onclick="show('home')">الرئيسية</button>
+<button onclick="show('students')">الطلاب</button>
+<button onclick="show('groups')">المجموعات</button>
+<button onclick="show('lines')">الطوابير</button>
+<button onclick="show('radio')">الإذاعة</button>
+<button onclick="show('map')">الخريطة الذهنية</button>
+<button onclick="show('admin')">الإدارة</button>
+</nav>
+
+<main>
+
+<section id="home">
+<h2>مرحباً بكم في WE LEADERS 💜💚</h2>
+<div class="grid">
+<div class="card"><h3>الطلاب</h3><h2 id="total">0</h2></div>
+<div class="card"><h3>المجموعات</h3><h2>4</h2></div>
+<div class="card"><h3>الطوابير</h3><h2>3</h2></div>
+<div class="card"><h3>القادة</h3><h2 id="leaders">0</h2></div>
+</div>
+<p>منصة تنظيم الطلاب والمجموعات والطوابير والأنشطة المدرسية.</p>
+</section>
+
+<section id="students" class="hidden">
+<h2>إضافة طالب جديد</h2>
+<div class="grid">
+<div><label>اسم الطالب</label><input id="name" placeholder="اسم الطالب"></div>
+<div><label>الصف</label>
+<select id="grade">
+<option>الصف الأول</option><option>الصف الثاني</option>
+<option>الصف الثالث</option>
+</select></div>
+<div><label>المجموعة</label>
+<select id="group">
+<option>المجموعة الأولى</option><option>المجموعة الثانية</option>
+<option>المجموعة الثالثة</option><option>المجموعة الرابعة</option>
+</select></div>
+<div><label>الجنس</label>
+<select id="gender"><option>ولد</option><option>بنت</option></select></div>
+</div>
+<button onclick="addStudent()">إضافة الطالب</button>
+<h2>قائمة الطلاب</h2>
+<div id="studentList"></div>
+</section>
+
+<section id="groups" class="hidden">
+<h2>تنظيم المجموعات</h2>
+<p>يمكنك توزيع الطلاب المسجلين على أربع مجموعات.</p>
+<button onclick="randomize()">توزيع الطلاب تلقائياً</button>
+<div id="groupList"></div>
+</section>
+
+<section id="lines" class="hidden">
+<h2>تنظيم الطوابير</h2>
+<div class="grid">
+<div class="card"><h3>الطابور الأول</h3><div id="line1">لم يتم التوزيع بعد</div></div>
+<div class="card"><h3>الطابور الثاني</h3><div id="line2">لم يتم التوزيع بعد</div></div>
+<div class="card"><h3>الطابور الثالث</h3><div id="line3">لم يتم التوزيع بعد</div></div>
+</div>
+</section>
+
+<section id="radio" class="hidden">
+<h2>تنظيم الإذاعة المدرسية</h2>
+<label>اسم مسؤول الإذاعة</label>
+<input id="radioName" placeholder="اسم الطالب المسؤول">
+<label>المجموعة</label>
+<select id="radioGroup">
+<option>المجموعة الأولى</option><option>المجموعة الثانية</option>
+<option>المجموعة الثالثة</option><option>المجموعة الرابعة</option>
+</select>
+<button onclick="saveRadio()">حفظ مسؤول الإذاعة</button>
+<div id="radioResult" class="card">لم يتم تحديد المسؤول بعد.</div>
+</section>
+
+<section id="map" class="hidden">
+<h2>الخريطة الذهنية لتوزيع القادة</h2>
+<p>أماكن المشاركين في الإذاعة والطابور.</p>
+<div class="card" style="text-align:center">
+<h3>🎤 منصة الإذاعة</h3>
+</div>
+<div class="grid">
+<div class="card">📍 المكان الأول<br><span id="place1">لم يحدد</span></div>
+<div class="card">📍 المكان الثاني<br><span id="place2">لم يحدد</span></div>
+<div class="card">📍 المكان الثالث<br><span id="place3">لم يحدد</span></div>
+</div>
+<p>يمكن تطوير الخريطة لاحقاً إلى مخطط تفاعلي متحرك.</p>
+</section>
+
+<section id="admin" class="hidden">
+<h2>إدارة المنصة</h2>
+<p>هذه نسخة تجريبية محلية. لا تحتوي بعد على تسجيل دخول آمن أو إدارة مديرين عبر الإنترنت.</p>
+<div class="card">
+<h3>إعدادات الإدارة</h3>
+<p>يجب ربط المنصة بخدمة تسجيل دخول وقاعدة بيانات قبل نشر صلاحيات المديرين الحقيقية.</p>
+</div>
+</section>
+
+</main>
+
+<footer>
+WE LEADERS © 2026
+<br><br>
+created by Matthew Wagdy
+</footer>
+
+<script>
+let students=JSON.parse(localStorage.getItem('wl_students')||'[]');
+
+function save(){
+ localStorage.setItem('wl_students',JSON.stringify(students));
+ render();
+}
+function show(id){
+ document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+}
+function addStudent(){
+ let name=document.getElementById('name').value.trim();
+ if(!name){alert('اكتب اسم الطالب');return}
+ students.push({
+ id:Date.now(),name,
+ grade:document.getElementById('grade').value,
+ group:document.getElementById('group').value,
+ gender:document.getElementById('gender').value
+ });
+ document.getElementById('name').value='';
+ save();
+ alert('تمت إضافة الطالب');
+}
+function removeStudent(id){
+ students=students.filter(s=>s.id!==id);
+ save();
+}
+function render(){
+ document.getElementById('total').textContent=students.length;
+ document.getElementById('leaders').textContent=students.length;
+ document.getElementById('studentList').innerHTML=
+ students.map(s=>`
+ <div class="student ${s.gender==='بنت'?'green':''}">
+ <div><b>${escapeHTML(s.name)}</b><br>
+ <small>${s.grade} | ${s.group} | ${s.gender}</small></div>
+ <button onclick="removeStudent(${s.id})">حذف</button>
+ </div>`).join('')||'لا يوجد طلاب حتى الآن';
+}
+function escapeHTML(s){
+ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function randomize(){
+ let shuffled=[...students].sort(()=>Math.random()-.5);
+ let groups=['المجموعة الأولى','المجموعة الثانية','المجموعة الثالثة','المجموعة الرابعة'];
+ let result=groups.map((g,i)=>{
+ let members=shuffled.filter((s,j)=>j%4===i);
+ return `<div class="card"><h3>${g}</h3>
+ ${members.map(s=>escapeHTML(s.name)+' - '+s.gender).join('<br>')||'لا يوجد طلاب'}</div>`;
+ }).join('');
+ document.getElementById('groupList').innerHTML=result;
+}
+function saveRadio(){
+ let name=document.getElementById('radioName').value.trim();
+ let group=document.getElementById('radioGroup').value;
+ if(!name){alert('اكتب اسم المسؤول');return}
+ document.getElementById('radioResult').innerHTML=
+ '<b>مسؤول الإذاعة:</b> '+escapeHTML(name)+'<br><b>المجموعة:</b> '+group;
+}
+render();
+</script>
+</body>
+</html>
