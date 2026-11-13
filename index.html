@@ -216,4 +216,36 @@ function saveRadio(){
  const name=document.getElementById("radioName").value.trim();if(!name){alert(t("writeName"));return}
  const g=document.getElementById("radioGroup").value;
  document.getElementById("radioResult").textContent=`${t("radioLead")}: ${name} | ${groupName(g)}`;
- document.getElementById("mapLead").
+ textContent=name;
+ document.getElementById("guidePlatform").textContent=name;
+ document.getElementById("radioResult").textContent=
+   `${t("radioLead")}: ${name} | ${groupName(g)}`;
+ alert(t("radioSaved"));
+}
+
+function playGuide(){
+ stopGuide();
+ guideIndex=0;
+ const steps=["guideStep1","guideStep2","guideStep3"];
+ function nextStep(){
+   document.getElementById("guideStatus").textContent=t(steps[guideIndex]);
+   guideIndex++;
+   if(guideIndex>=steps.length){
+     clearInterval(guideTimer);
+     guideTimer=null;
+     guideIndex=0;
+   }
+ }
+ nextStep();
+ guideTimer=setInterval(nextStep,2500);
+}
+
+function stopGuide(){
+ if(guideTimer){
+   clearInterval(guideTimer);
+   guideTimer=null;
+ }
+ document.getElementById("guideStatus").textContent=t("guideReady");
+}
+
+render();
