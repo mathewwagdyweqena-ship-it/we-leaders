@@ -213,13 +213,18 @@ function randomize(){
  document.getElementById("groupList").innerHTML=groups.map((arr,i)=>`<div class="card"><h3>${groupName(i+1)}</h3>${arr.map(s=>`<div>${esc(s.name)} — ${s.gender==="girl"?t("girl"):t("boy")}</div>`).join("")||t("empty")}</div>`).join("");
 }
 function saveRadio(){
- const name=document.getElementById("radioName").value.trim();if(!name){alert(t("writeName"));return}
+ const name=document.getElementById("radioName").value.trim();
+ if(!name){
+   alert(t("writeName"));
+   return;
+ }
  const g=document.getElementById("radioGroup").value;
- document.getElementById("radioResult").textContent=`${t("radioLead")}: ${name} | ${groupName(g)}`;
- textContent=name;
+
+ document.getElementById("mapLead").textContent=name;
  document.getElementById("guidePlatform").textContent=name;
  document.getElementById("radioResult").textContent=
    `${t("radioLead")}: ${name} | ${groupName(g)}`;
+
  alert(t("radioSaved"));
 }
 
@@ -227,6 +232,7 @@ function playGuide(){
  stopGuide();
  guideIndex=0;
  const steps=["guideStep1","guideStep2","guideStep3"];
+
  function nextStep(){
    document.getElementById("guideStatus").textContent=t(steps[guideIndex]);
    guideIndex++;
