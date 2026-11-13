@@ -5,230 +5,215 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WE LEADERS | منصة القادة</title>
 <style>
+:root{
+  --bg1:#30204f; --bg2:#176b50; --panel:rgba(28,24,55,.88);
+  --panel2:rgba(37,63,66,.78); --purple:#8054c7; --green:#27966b;
+  --text:#f7f4ff; --muted:#d4cce5; --line:rgba(255,255,255,.13);
+}
 *{box-sizing:border-box}
 body{
- margin:0;font-family:Arial,sans-serif;
- background:linear-gradient(135deg,#f4edff,#e4f9ed);
- color:#25203b;
+ margin:0;min-height:100vh;font-family:Arial,sans-serif;color:var(--text);
+ background:linear-gradient(125deg,#2d1d4c 0%,#3d3568 42%,#246b57 100%);
+ background-attachment:fixed;
 }
-header{
- background:linear-gradient(100deg,#5421a8,#168653);
- color:white;text-align:center;padding:30px 15px;
-}
-header h1{font-size:35px;margin:0 0 10px}
-header p{margin:0}
-nav{
- display:flex;flex-wrap:wrap;justify-content:center;
- gap:10px;padding:15px;background:white;
- position:sticky;top:0;z-index:5;
- box-shadow:0 3px 10px #0001;
-}
-button{
- border:0;border-radius:10px;padding:12px 18px;
- background:#692dbb;color:white;font-weight:bold;
- cursor:pointer;
-}
-button:hover{opacity:.85}
-nav button:nth-child(even){background:#168653}
-main{max-width:1100px;margin:auto;padding:20px}
-section{
- background:white;padding:22px;margin-bottom:20px;
- border-radius:18px;box-shadow:0 5px 20px #0000000c;
-}
-h2{color:#652ab1;margin-top:0}
-input,select,textarea{
- width:100%;padding:12px;margin:7px 0 12px;
- border:1px solid #ddd;border-radius:9px;
- font-size:15px;background:#fff;
-}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.student{
- padding:14px;margin:9px 0;border-radius:12px;
- background:#f4efff;border-right:5px solid #702dbb;
- display:flex;justify-content:space-between;align-items:center;gap:8px;
-}
-.student small{color:#666}
-.green{background:#e9f8ef;border-right-color:#168653}
-.hidden{display:none}
-.card{
- background:linear-gradient(120deg,#f2eaff,#e7f8ed);
- border-radius:12px;padding:15px;margin:10px 0;
-}
-footer{text-align:center;padding:25px;color:#65577a}
+header{padding:28px 16px;text-align:center;background:linear-gradient(100deg,rgba(83,47,139,.9),rgba(26,126,84,.88));border-bottom:1px solid var(--line)}
+header h1{font-size:clamp(30px,5vw,44px);margin:0 0 8px;letter-spacing:1px}
+header p{margin:0;color:#eee7ff}
+.topbar{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;padding:12px;background:rgba(20,20,42,.72);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+button{border:0;border-radius:11px;padding:11px 15px;background:linear-gradient(120deg,#7950bd,#347f68);color:white;font-weight:bold;cursor:pointer}
+button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+button.secondary{background:#3e3a5c;border:1px solid var(--line)}
+button.danger{background:#a7445c}
+main{max-width:1120px;margin:auto;padding:20px}
+section{background:var(--panel);border:1px solid var(--line);padding:22px;margin:0 0 18px;border-radius:20px;box-shadow:0 12px 35px #08071455}
+h2{color:#d8c4ff;margin:0 0 16px}
+h3{margin-top:0}
+p,.muted{color:var(--muted);line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.card{background:linear-gradient(135deg,rgba(105,72,151,.48),rgba(32,112,82,.48));border:1px solid var(--line);border-radius:15px;padding:16px;margin:9px 0}
+.stat{font-size:32px;font-weight:bold;color:#fff}
+label{display:block;margin:8px 0 4px;color:#e8e0f5}
+input,select{width:100%;padding:12px;margin:5px 0 12px;border:1px solid #77708e;border-radius:10px;background:#211e39;color:white;font-size:15px}
+input::placeholder{color:#b9b0ca}
+.student{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(115,83,166,.25);border-inline-start:5px solid #a47be4;padding:13px;border-radius:12px;margin:9px 0}
+.student.girl{border-inline-start-color:#55c99a;background:rgba(35,125,88,.2)}
+.hidden{display:none!important}
+.badge{display:inline-block;padding:4px 9px;border-radius:20px;background:#27694f;color:#e6fff2;font-size:12px}
+footer{text-align:center;padding:25px;color:#e0d8ee}
+.lang-switch{min-width:110px}
+.notice{border:1px solid #d2aa55;background:rgba(120,83,27,.22);padding:13px;border-radius:12px;color:#ffe9b7;line-height:1.7}
+.guide-stage{position:relative;overflow:hidden;min-height:300px;background:linear-gradient(135deg,#211a3b,#174d42);border:1px solid var(--line);border-radius:17px;padding:20px}
+.stage-title{text-align:center;color:#e9dcff;font-weight:bold}
+.stage-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;margin-top:20px}
+.stage-box{border:2px dashed #9c83cf;border-radius:14px;padding:20px;text-align:center;background:#ffffff0b}
+.stage-box.platform{border-color:#59c99a;background:#1a6a4a55}
+.person{display:inline-block;margin:5px;padding:9px 12px;border-radius:10px;background:#7655ae;color:white;font-size:13px;animation:bob 2s infinite ease-in-out}
+.person:nth-child(2n){animation-delay:.3s;background:#247c5a}
+.arrow{font-size:27px;color:#9de2c3;text-align:center;animation:pulse 1.2s infinite}
+@keyframes bob{50%{transform:translateY(-7px)}}
+@keyframes pulse{50%{opacity:.35;transform:scale(1.15)}}
+.guide-controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+[dir="ltr"] .student{border-inline-start:0;border-left:5px solid #a47be4}
+[dir="ltr"] .student.girl{border-left-color:#55c99a}
+@media(max-width:600px){main{padding:12px}section{padding:16px}.stage-layout{grid-template-columns:1fr}.topbar{position:static}}
 </style>
 </head>
 <body>
-
 <header>
-<h1>WE LEADERS</h1>
-<p>المنصة الشاملة لإدارة المدرسة وتنظيم القادة</p>
+  <h1>WE LEADERS</h1>
+  <p data-i18n="subtitle">المنصة الشاملة لإدارة المدرسة وتنظيم القادة</p>
 </header>
-
-<nav>
-<button onclick="show('home')">الرئيسية</button>
-<button onclick="show('students')">الطلاب</button>
-<button onclick="show('groups')">المجموعات</button>
-<button onclick="show('lines')">الطوابير</button>
-<button onclick="show('radio')">الإذاعة</button>
-<button onclick="show('map')">الخريطة الذهنية</button>
-<button onclick="show('admin')">الإدارة</button>
-</nav>
-
-<main>
-
-<section id="home">
-<h2>مرحباً بكم في WE LEADERS 💜💚</h2>
-<div class="grid">
-<div class="card"><h3>الطلاب</h3><h2 id="total">0</h2></div>
-<div class="card"><h3>المجموعات</h3><h2>4</h2></div>
-<div class="card"><h3>الطوابير</h3><h2>3</h2></div>
-<div class="card"><h3>القادة</h3><h2 id="leaders">0</h2></div>
+<div class="topbar">
+  <button class="lang-switch secondary" onclick="toggleLanguage()">English / عربي</button>
+  <nav>
+    <button onclick="show('home')" data-i18n="home">الرئيسية</button>
+    <button onclick="show('students')" data-i18n="students">الطلاب</button>
+    <button onclick="show('groups')" data-i18n="groups">المجموعات</button>
+    <button onclick="show('lines')" data-i18n="lines">الطوابير</button>
+    <button onclick="show('radio')" data-i18n="radio">الإذاعة</button>
+    <button onclick="show('map')" data-i18n="map">الخريطة الذهنية</button>
+    <button onclick="show('guide')" data-i18n="guide">دليل الحركة</button>
+    <button onclick="show('admin')" data-i18n="admin">الإدارة</button>
+  </nav>
 </div>
-<p>منصة تنظيم الطلاب والمجموعات والطوابير والأنشطة المدرسية.</p>
+<main>
+<section id="home">
+  <h2 data-i18n="welcome">مرحباً بكم في WE LEADERS 💜💚</h2>
+  <div class="grid">
+    <div class="card"><h3 data-i18n="studentsCount">عدد الطلاب</h3><div class="stat" id="total">0</div></div>
+    <div class="card"><h3 data-i18n="groupsCount">المجموعات</h3><div class="stat">4</div></div>
+    <div class="card"><h3 data-i18n="linesCount">الطوابير</h3><div class="stat">3</div></div>
+    <div class="card"><h3 data-i18n="leadersCount">القادة</h3><div class="stat" id="leaders">0</div></div>
+  </div>
+  <p data-i18n="intro">نظّم الطلاب والمجموعات والطوابير والأنشطة المدرسية من مكان واحد.</p>
 </section>
 
 <section id="students" class="hidden">
-<h2>إضافة طالب جديد</h2>
-<div class="grid">
-<div><label>اسم الطالب</label><input id="name" placeholder="اسم الطالب"></div>
-<div><label>الصف</label>
-<select id="grade">
-<option>الصف الأول</option><option>الصف الثاني</option>
-<option>الصف الثالث</option>
-</select></div>
-<div><label>المجموعة</label>
-<select id="group">
-<option>المجموعة الأولى</option><option>المجموعة الثانية</option>
-<option>المجموعة الثالثة</option><option>المجموعة الرابعة</option>
-</select></div>
-<div><label>الجنس</label>
-<select id="gender"><option>ولد</option><option>بنت</option></select></div>
-</div>
-<button onclick="addStudent()">إضافة الطالب</button>
-<h2>قائمة الطلاب</h2>
-<div id="studentList"></div>
+  <h2 data-i18n="addStudent">إضافة طالب جديد</h2>
+  <div class="grid">
+    <div><label data-i18n="studentName">اسم الطالب</label><input id="name" data-placeholder="namePlaceholder" placeholder="اسم الطالب"></div>
+    <div><label data-i18n="grade">الصف</label><select id="grade"><option value="g1">الصف الأول</option><option value="g2">الصف الثاني</option><option value="g3">الصف الثالث</option></select></div>
+    <div><label data-i18n="group">المجموعة</label><select id="group"><option value="1">المجموعة الأولى</option><option value="2">المجموعة الثانية</option><option value="3">المجموعة الثالثة</option><option value="4">المجموعة الرابعة</option></select></div>
+    <div><label data-i18n="gender">النوع</label><select id="gender"><option value="boy" data-i18n="boy">ولد</option><option value="girl" data-i18n="girl">بنت</option></select></div>
+  </div>
+  <button onclick="addStudent()" data-i18n="add">إضافة الطالب</button>
+  <h2 data-i18n="studentList">قائمة الطلاب</h2><div id="studentList"></div>
 </section>
 
 <section id="groups" class="hidden">
-<h2>تنظيم المجموعات</h2>
-<p>يمكنك توزيع الطلاب المسجلين على أربع مجموعات.</p>
-<button onclick="randomize()">توزيع الطلاب تلقائياً</button>
-<div id="groupList"></div>
+  <h2 data-i18n="groupTitle">تنظيم المجموعات</h2>
+  <p data-i18n="groupDesc">وزّع الطلاب المسجلين على أربع مجموعات بالتساوي مع مراعاة النوع.</p>
+  <button onclick="randomize()" data-i18n="distribute">توزيع الطلاب تلقائياً</button>
+  <div id="groupList"></div>
 </section>
 
 <section id="lines" class="hidden">
-<h2>تنظيم الطوابير</h2>
-<div class="grid">
-<div class="card"><h3>الطابور الأول</h3><div id="line1">لم يتم التوزيع بعد</div></div>
-<div class="card"><h3>الطابور الثاني</h3><div id="line2">لم يتم التوزيع بعد</div></div>
-<div class="card"><h3>الطابور الثالث</h3><div id="line3">لم يتم التوزيع بعد</div></div>
-</div>
+  <h2 data-i18n="linesTitle">تنظيم الطوابير</h2>
+  <div class="grid">
+    <div class="card"><h3 data-i18n="line1">الطابور الأول</h3><div id="line1">—</div></div>
+    <div class="card"><h3 data-i18n="line2">الطابور الثاني</h3><div id="line2">—</div></div>
+    <div class="card"><h3 data-i18n="line3">الطابور الثالث</h3><div id="line3">—</div></div>
+  </div>
+  <p class="muted" data-i18n="lineNote">هذه خانات تنظيمية؛ حدّدوا ترتيب الوقوف الفعلي حسب تعليمات المدرسة.</p>
 </section>
 
 <section id="radio" class="hidden">
-<h2>تنظيم الإذاعة المدرسية</h2>
-<label>اسم مسؤول الإذاعة</label>
-<input id="radioName" placeholder="اسم الطالب المسؤول">
-<label>المجموعة</label>
-<select id="radioGroup">
-<option>المجموعة الأولى</option><option>المجموعة الثانية</option>
-<option>المجموعة الثالثة</option><option>المجموعة الرابعة</option>
-</select>
-<button onclick="saveRadio()">حفظ مسؤول الإذاعة</button>
-<div id="radioResult" class="card">لم يتم تحديد المسؤول بعد.</div>
+  <h2 data-i18n="radioTitle">تنظيم الإذاعة المدرسية</h2>
+  <label data-i18n="radioLead">اسم مسؤول الإذاعة</label><input id="radioName" data-placeholder="radioPlaceholder" placeholder="اسم الطالب المسؤول">
+  <label data-i18n="group">المجموعة</label>
+  <select id="radioGroup"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+  <button onclick="saveRadio()" data-i18n="save">حفظ</button>
+  <div id="radioResult" class="card" data-i18n="noRadio">لم يتم تحديد المسؤول بعد.</div>
 </section>
 
 <section id="map" class="hidden">
-<h2>الخريطة الذهنية لتوزيع القادة</h2>
-<p>أماكن المشاركين في الإذاعة والطابور.</p>
-<div class="card" style="text-align:center">
-<h3>🎤 منصة الإذاعة</h3>
-</div>
-<div class="grid">
-<div class="card">📍 المكان الأول<br><span id="place1">لم يحدد</span></div>
-<div class="card">📍 المكان الثاني<br><span id="place2">لم يحدد</span></div>
-<div class="card">📍 المكان الثالث<br><span id="place3">لم يحدد</span></div>
-</div>
-<p>يمكن تطوير الخريطة لاحقاً إلى مخطط تفاعلي متحرك.</p>
+  <h2 data-i18n="mapTitle">الخريطة الذهنية لتوزيع القادة</h2>
+  <div class="grid">
+    <div class="card"><h3 data-i18n="platform">🎤 منصة الإذاعة</h3><span id="mapLead">—</span></div>
+    <div class="card"><h3 data-i18n="placeOne">المكان الأول</h3><span data-i18n="setLocation">يُحدد بواسطة الإدارة</span></div>
+    <div class="card"><h3 data-i18n="placeTwo">المكان الثاني</h3><span data-i18n="setLocation">يُحدد بواسطة الإدارة</span></div>
+    <div class="card"><h3 data-i18n="placeThree">المكان الثالث</h3><span data-i18n="setLocation">يُحدد بواسطة الإدارة</span></div>
+  </div>
+</section>
+
+<section id="guide" class="hidden">
+  <h2 data-i18n="guideTitle">دليل حركة القادة</h2>
+  <p data-i18n="guideDesc">شرح مرئي مبسط لمكان الوقوف ثم الانتقال إلى المكان التالي. هذا نموذج توضيحي ويمكن تخصيصه وفق مخطط المدرسة.</p>
+  <div class="guide-stage">
+    <div class="stage-title" data-i18n="schoolYard">ساحة المدرسة</div>
+    <div class="stage-layout">
+      <div class="stage-box platform"><h3 data-i18n="broadcastPlatform">🎤 منصة الإذاعة</h3><div id="guidePlatform" class="person">—</div></div>
+      <div class="stage-box"><h3 data-i18n="startingPoint">نقطة الوقوف</h3><div class="person">Group 1</div><div class="person">Group 2</div><div class="person">Group 3</div><div class="person">Group 4</div></div>
+    </div>
+    <div class="arrow">↓　→　↓</div>
+    <div class="stage-box"><h3 data-i18n="nextPoint">مكان الانتقال التالي</h3><div class="person" data-i18n="leaders">القادة</div></div>
+  </div>
+  <div class="guide-controls"><button onclick="playGuide()" data-i18n="playGuide">▶ تشغيل الشرح</button><button class="secondary" onclick="stopGuide()" data-i18n="stopGuide">إيقاف</button></div>
+  <p id="guideStatus" class="muted" data-i18n="guideReady">الشرح جاهز للتشغيل.</p>
 </section>
 
 <section id="admin" class="hidden">
-<h2>إدارة المنصة</h2>
-<p>هذه نسخة تجريبية محلية. لا تحتوي بعد على تسجيل دخول آمن أو إدارة مديرين عبر الإنترنت.</p>
-<div class="card">
-<h3>إعدادات الإدارة</h3>
-<p>يجب ربط المنصة بخدمة تسجيل دخول وقاعدة بيانات قبل نشر صلاحيات المديرين الحقيقية.</p>
-</div>
+  <h2 data-i18n="adminTitle">إدارة المنصة</h2>
+  <div class="notice" data-i18n="securityNotice">تنبيه مهم: هذه النسخة واجهة تجريبية فقط. صلاحيات المديرين الحقيقية وتسجيل الدخول الآمن ومشاركة البيانات بين الأجهزة تحتاج إلى خدمة خلفية وقاعدة بيانات. لا تضع كلمات مرور أو بيانات حساسة في هذا الملف.</div>
+  <div class="card"><h3 data-i18n="roleTitle">نظام الصلاحيات المطلوب</h3>
+    <ul>
+      <li data-i18n="ownerRole">المدير الرئيسي: أنت وحدك تضيف المديرين وتوقف حساباتهم.</li>
+      <li data-i18n="managerRole">المدير: يضيف الطلاب والمحتوى ويعدّل ما تسمح به صلاحياته، ولا يضيف مديرين.</li>
+      <li data-i18n="visitorRole">الزائر: مشاهدة فقط دون إضافة أو تعديل أو حذف.</li>
+    </ul>
+  </div>
+  <p data-i18n="backendNote">GitHub Pages يستضيف الواجهة فقط؛ لا يستطيع وحده حماية حسابات المديرين أو مزامنة البيانات بين الأجهزة. سنحتاج ربط قاعدة بيانات وتسجيل دخول موثوقين قبل استخدام المنصة فعلياً.</p>
 </section>
-
 </main>
-
-<footer>
-WE LEADERS © 2026
-<br><br>
-created by Matthew Wagdy
-</footer>
+<footer>WE LEADERS © 2026<br><br>created by Matthew Wagdy</footer>
 
 <script>
-let students=JSON.parse(localStorage.getItem('wl_students')||'[]');
-
-function save(){
- localStorage.setItem('wl_students',JSON.stringify(students));
+const translations={
+ar:{
+subtitle:"المنصة الشاملة لإدارة المدرسة وتنظيم القادة",home:"الرئيسية",students:"الطلاب",groups:"المجموعات",lines:"الطوابير",radio:"الإذاعة",map:"الخريطة الذهنية",guide:"دليل الحركة",admin:"الإدارة",welcome:"مرحباً بكم في WE LEADERS 💜💚",studentsCount:"عدد الطلاب",groupsCount:"المجموعات",linesCount:"الطوابير",leadersCount:"القادة",intro:"نظّم الطلاب والمجموعات والطوابير والأنشطة المدرسية من مكان واحد.",addStudent:"إضافة طالب جديد",studentName:"اسم الطالب",namePlaceholder:"اسم الطالب",grade:"الصف",group:"المجموعة",gender:"النوع",boy:"ولد",girl:"بنت",add:"إضافة الطالب",studentList:"قائمة الطلاب",groupTitle:"تنظيم المجموعات",groupDesc:"وزّع الطلاب المسجلين على أربع مجموعات بالتساوي مع مراعاة النوع.",distribute:"توزيع الطلاب تلقائياً",linesTitle:"تنظيم الطوابير",line1:"الطابور الأول",line2:"الطابور الثاني",line3:"الطابور الثالث",lineNote:"هذه خانات تنظيمية؛ حدّدوا ترتيب الوقوف الفعلي حسب تعليمات المدرسة.",radioTitle:"تنظيم الإذاعة المدرسية",radioLead:"اسم مسؤول الإذاعة",radioPlaceholder:"اسم الطالب المسؤول",save:"حفظ",noRadio:"لم يتم تحديد المسؤول بعد.",mapTitle:"الخريطة الذهنية لتوزيع القادة",platform:"🎤 منصة الإذاعة",placeOne:"المكان الأول",placeTwo:"المكان الثاني",placeThree:"المكان الثالث",setLocation:"يُحدد بواسطة الإدارة",guideTitle:"دليل حركة القادة",guideDesc:"شرح مرئي مبسط لمكان الوقوف ثم الانتقال إلى المكان التالي. هذا نموذج توضيحي ويمكن تخصيصه وفق مخطط المدرسة.",schoolYard:"ساحة المدرسة",broadcastPlatform:"🎤 منصة الإذاعة",startingPoint:"نقطة الوقوف",nextPoint:"مكان الانتقال التالي",leaders:"القادة",playGuide:"▶ تشغيل الشرح",stopGuide:"إيقاف",guideReady:"الشرح جاهز للتشغيل.",adminTitle:"إدارة المنصة",securityNotice:"تنبيه مهم: هذه النسخة واجهة تجريبية فقط. صلاحيات المديرين الحقيقية وتسجيل الدخول الآمن ومشاركة البيانات بين الأجهزة تحتاج إلى خدمة خلفية وقاعدة بيانات. لا تضع كلمات مرور أو بيانات حساسة في هذا الملف.",roleTitle:"نظام الصلاحيات المطلوب",ownerRole:"المدير الرئيسي: أنت وحدك تضيف المديرين وتوقف حساباتهم.",managerRole:"المدير: يضيف الطلاب والمحتوى ويعدّل ما تسمح به صلاحياته، ولا يضيف مديرين.",visitorRole:"الزائر: مشاهدة فقط دون إضافة أو تعديل أو حذف.",backendNote:"GitHub Pages يستضيف الواجهة فقط؛ لا يستطيع وحده حماية حسابات المديرين أو مزامنة البيانات بين الأجهزة. سنحتاج ربط قاعدة بيانات وتسجيل دخول موثوقين قبل استخدام المنصة فعلياً.",empty:"لا يوجد طلاب حتى الآن",delete:"حذف",added:"تمت إضافة الطالب",writeName:"اكتب اسم الطالب",radioSaved:"تم حفظ مسؤول الإذاعة",groupName:"المجموعة",guideStep1:"الخطوة 1: يقف الطلاب في أماكن مجموعاتهم المحددة.",guideStep2:"الخطوة 2: يتحرك كل قائد إلى نقطة النشاط التالية عند الإشارة.",guideStep3:"الخطوة 3: يتبع الجميع ترتيب المدرسة وتعليمات المشرف."},
+en:{
+subtitle:"The school platform for organizing students and leaders",home:"Home",students:"Students",groups:"Groups",lines:"Assemblies",radio:"School Radio",map:"Mind Map",guide:"Movement Guide",admin:"Administration",welcome:"Welcome to WE LEADERS 💜💚",studentsCount:"Students",groupsCount:"Groups",linesCount:"Assembly lines",leadersCount:"Leaders",intro:"Organize students, groups, assemblies and school activities in one place.",addStudent:"Add a new student",studentName:"Student name",namePlaceholder:"Student name",grade:"Grade",group:"Group",gender:"Gender",boy:"Boy",girl:"Girl",add:"Add student",studentList:"Student list",groupTitle:"Group organization",groupDesc:"Distribute registered students across four groups while keeping the groups balanced.",distribute:"Distribute students",linesTitle:"Assembly organization",line1:"Assembly line 1",line2:"Assembly line 2",line3:"Assembly line 3",lineNote:"These are planning areas. Confirm the actual positions according to school instructions.",radioTitle:"School radio organization",radioLead:"Radio leader name",radioPlaceholder:"Student responsible",save:"Save",noRadio:"No radio leader selected yet.",mapTitle:"Leaders mind map",platform:"🎤 Radio platform",placeOne:"Location one",placeTwo:"Location two",placeThree:"Location three",setLocation:"Set by administration",guideTitle:"Leaders Movement Guide",guideDesc:"A simple visual guide showing where students stand and where they move next. This is a sample layout that can be customized to match the school plan.",schoolYard:"School Yard",broadcastPlatform:"🎤 Radio Platform",startingPoint:"Starting positions",nextPoint:"Next destination",leaders:"Leaders",playGuide:"▶ Play guide",stopGuide:"Stop",guideReady:"The guide is ready to play.",adminTitle:"Platform administration",securityNotice:"Important: This is a front-end prototype only. Real manager permissions, secure sign-in and shared data across devices require a backend service and database. Do not put passwords or sensitive data in this file.",roleTitle:"Required permission system",ownerRole:"Owner: only you can create and disable manager accounts.",managerRole:"Manager: can add students and content and edit permitted data, but cannot create managers.",visitorRole:"Visitor: view-only access with no adding, editing or deleting.",backendNote:"GitHub Pages hosts the front end only; it cannot securely protect manager accounts or sync data across devices by itself. A trusted authentication service and database are required before real use.",empty:"No students yet",delete:"Delete",added:"Student added",writeName:"Enter the student name",radioSaved:"Radio leader saved",groupName:"Group",guideStep1:"Step 1: Students stand in their assigned group positions.",guideStep2:"Step 2: Each leader moves to the next activity point when instructed.",guideStep3:"Step 3: Everyone follows the school's order and supervisor instructions."}
+};
+let lang="ar";
+let students=JSON.parse(localStorage.getItem("wl_students")||"[]");
+let guideTimer=null,guideIndex=0;
+function t(k){return translations[lang][k]||k}
+function toggleLanguage(){
+ lang=lang==="ar"?"en":"ar";
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ document.querySelectorAll("[data-i18n]").forEach(el=>{let k=el.dataset.i18n;if(translations[lang][k])el.textContent=t(k)});
+ document.querySelectorAll("[data-placeholder]").forEach(el=>el.placeholder=t(el.dataset.placeholder));
+ document.getElementById("grade").options[0].text=lang==="ar"?"الصف الأول":"Grade 1";
+ document.getElementById("grade").options[1].text=lang==="ar"?"الصف الثاني":"Grade 2";
+ document.getElementById("grade").options[2].text=lang==="ar"?"الصف الثالث":"Grade 3";
+ [...document.getElementById("group").options].forEach((o,i)=>o.text=lang==="ar"?`المجموعة ${["الأولى","الثانية","الثالثة","الرابعة"][i]}`:`Group ${i+1}`);
+ [...document.getElementById("radioGroup").options].forEach((o,i)=>o.text=`${t("groupName")} ${i+1}`);
  render();
 }
-function show(id){
- document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
-}
+function show(id){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
+function save(){localStorage.setItem("wl_students",JSON.stringify(students));render()}
 function addStudent(){
- let name=document.getElementById('name').value.trim();
- if(!name){alert('اكتب اسم الطالب');return}
- students.push({
- id:Date.now(),name,
- grade:document.getElementById('grade').value,
- group:document.getElementById('group').value,
- gender:document.getElementById('gender').value
- });
- document.getElementById('name').value='';
- save();
- alert('تمت إضافة الطالب');
+ const name=document.getElementById("name").value.trim();if(!name){alert(t("writeName"));return}
+ students.push({id:Date.now()+Math.random(),name,grade:document.getElementById("grade").value,group:document.getElementById("group").value,gender:document.getElementById("gender").value});
+ document.getElementById("name").value="";save();alert(t("added"));
 }
-function removeStudent(id){
- students=students.filter(s=>s.id!==id);
- save();
-}
+function removeStudent(id){if(!confirm(t("delete")+"?"))return;students=students.filter(s=>s.id!==id);save()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function gradeName(v){return ({g1:lang==="ar"?"الصف الأول":"Grade 1",g2:lang==="ar"?"الصف الثاني":"Grade 2",g3:lang==="ar"?"الصف الثالث":"Grade 3"})[v]||v}
+function groupName(v){return lang==="ar"?`المجموعة ${["الأولى","الثانية","الثالثة","الرابعة"][Number(v)-1]}`:`Group ${v}`}
 function render(){
- document.getElementById('total').textContent=students.length;
- document.getElementById('leaders').textContent=students.length;
- document.getElementById('studentList').innerHTML=
- students.map(s=>`
- <div class="student ${s.gender==='بنت'?'green':''}">
- <div><b>${escapeHTML(s.name)}</b><br>
- <small>${s.grade} | ${s.group} | ${s.gender}</small></div>
- <button onclick="removeStudent(${s.id})">حذف</button>
- </div>`).join('')||'لا يوجد طلاب حتى الآن';
-}
-function escapeHTML(s){
- return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ document.getElementById("total").textContent=students.length;document.getElementById("leaders").textContent=students.length;
+ document.getElementById("studentList").innerHTML=students.map(s=>`<div class="student ${s.gender==="girl"?"girl":""}"><div><b>${esc(s.name)}</b><br><small>${gradeName(s.grade)} | ${groupName(s.group)} | ${s.gender==="girl"?t("girl"):t("boy")}</small></div><button class="danger" onclick="removeStudent(${s.id})">${t("delete")}</button></div>`).join("")||t("empty");
 }
 function randomize(){
- let shuffled=[...students].sort(()=>Math.random()-.5);
- let groups=['المجموعة الأولى','المجموعة الثانية','المجموعة الثالثة','المجموعة الرابعة'];
- let result=groups.map((g,i)=>{
- let members=shuffled.filter((s,j)=>j%4===i);
- return `<div class="card"><h3>${g}</h3>
- ${members.map(s=>escapeHTML(s.name)+' - '+s.gender).join('<br>')||'لا يوجد طلاب'}</div>`;
- }).join('');
- document.getElementById('groupList').innerHTML=result;
+ let pool=[...students].sort(()=>Math.random()-.5),groups=[[],[],[],[]];
+ pool.forEach((s,i)=>groups[i%4].push(s));
+ document.getElementById("groupList").innerHTML=groups.map((arr,i)=>`<div class="card"><h3>${groupName(i+1)}</h3>${arr.map(s=>`<div>${esc(s.name)} — ${s.gender==="girl"?t("girl"):t("boy")}</div>`).join("")||t("empty")}</div>`).join("");
 }
 function saveRadio(){
- let name=document.getElementById('radioName').value.trim();
- let group=document.getElementById('radioGroup').value;
- if(!name){alert('اكتب اسم المسؤول');return}
- document.getElementById('radioResult').innerHTML=
- '<b>مسؤول الإذاعة:</b> '+escapeHTML(name)+'<br><b>المجموعة:</b> '+group;
-}
-render();
-</script>
-</body>
-</html>
+ const name=document.getElementById("radioName").value.trim();if(!name){alert(t("writeName"));return}
+ const g=document.getElementById("radioGroup").value;
+ document.getElementById("radioResult").textContent=`${t("radioLead")}: ${name} | ${groupName(g)}`;
+ document.getElementById("mapLead").
