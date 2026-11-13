@@ -600,167 +600,361 @@ footer{text-align:center;padding:25px;color:#e0d8ee}
 </footer>
 
 <script>
-const translations={
-ar:{
+const translations = {
+ar: {
+subtitle:"المنصة الشاملة لإدارة المدرسة وتنظيم القادة",
 home:"الرئيسية",students:"الطلاب",groups:"المجموعات",lines:"الطوابير",
 radio:"الإذاعة",map:"الخريطة الذهنية",guide:"دليل الحركة",admin:"الإدارة",
-add:"إضافة الطالب",delete:"حذف",empty:"لا يوجد طلاب حتى الآن",
-boys:"الأولاد",girls:"البنات",noStudents:"لا يوجد طلاب في هذا القسم",
+welcome:"مرحباً بكم في WE LEADERS 💜💚",
+studentsCount:"عدد الطلاب",groupsCount:"المجموعات",linesCount:"الطوابير",
+leadersCount:"القادة",
+intro:"نظّم الطلاب والمجموعات والطوابير والأنشطة المدرسية من مكان واحد.",
+addStudent:"إضافة طالب جديد",studentName:"اسم الطالب",namePlaceholder:"اسم الطالب",
+grade:"الصف",group:"المجموعة",gender:"النوع",boy:"ولد",girl:"بنت",
+add:"إضافة الطالب",studentList:"قائمة الطلاب",
+groupTitle:"تنظيم المجموعات",
+groupDesc:"وزّع الطلاب على أربع مجموعات، وكل مجموعة تظهر منفصلة عن الأخرى.",
+distribute:"توزيع الطلاب تلقائياً",
+linesTitle:"تنظيم الطوابير",line1:"الطابور الأول",
+line2:"الطابور الثاني",line3:"الطابور الثالث",
+lineNote:"حدّدوا ترتيب الوقوف حسب تعليمات المدرسة.",
+radioTitle:"تنظيم الإذاعة المدرسية",
+radioLead:"اسم الطالب الأول",radioPlaceholder:"اسم الطالب",
+save:"حفظ",noRadio:"لم يتم تحديد طلاب الإذاعة بعد.",
+mapTitle:"الخريطة الذهنية لتوزيع القادة",
+platform:"🎤 منصة الإذاعة",placeOne:"المكان الأول",
+placeTwo:"المكان الثاني",placeThree:"المكان الثالث",
+setLocation:"يُحدد بواسطة الإدارة",
+guideTitle:"دليل حركة القادة",
+guideDesc:"مشهد ثلاثي الأبعاد توضيحي لحركة الطلاب داخل ساحة المدرسة.",
+schoolYard:"ساحة المدرسة",broadcastPlatform:"🎤 منصة الإذاعة",
+startingPoint:"أماكن المجموعات",nextPoint:"مكان الانتقال التالي",
+leaders:"القادة",playGuide:"▶ تشغيل الشرح",stopGuide:"إيقاف",
+guideReady:"الشرح جاهز للتشغيل.",
+adminTitle:"إدارة المنصة",
+securityNotice:"هذه نسخة تجريبية. تسجيل الدخول الآمن ومزامنة البيانات يحتاجان إلى قاعدة بيانات.",
+roleTitle:"نظام الصلاحيات المطلوب",
+ownerRole:"المدير الرئيسي: يضيف المديرين.",
+managerRole:"المدير: يعدّل بيانات الطلاب والمحتوى.",
+visitorRole:"الزائر: مشاهدة فقط.",
+backendNote:"GitHub Pages لا يوفر وحده تسجيل دخول آمن أو مزامنة البيانات بين الأجهزة.",
+empty:"لا يوجد طلاب حتى الآن",delete:"حذف",
 added:"تمت إضافة الطالب",writeName:"اكتب اسم الطالب",
-radioSaved:"تم حفظ بيانات الإذاعة",
-guideStep1:"الخطوة 1: يقف الطلاب في أماكن مجموعاتهم المحددة.",
-guideStep2:"الخطوة 2: يتحرك الطالبان إلى منصة الإذاعة.",
-guideStep3:"الخطوة 3: يتبع الجميع ترتيب المدرسة وتعليمات المشرف.",
-guideReady:"الشرح جاهز للتشغيل."
+radioSaved:"تم حفظ طلاب الإذاعة",
+groupName:"المجموعة",
+guideStep1:"الخطوة الأولى: الطلاب في أماكن مجموعاتهم.",
+guideStep2:"الخطوة الثانية: يتحرك طلاب الإذاعة إلى المنصة.",
+guideStep3:"الخطوة الثالثة: يبدأ النشاط بعد تنظيم الصفوف."
 },
-en:{
+en: {
+subtitle:"The school platform for organizing students and leaders",
 home:"Home",students:"Students",groups:"Groups",lines:"Assemblies",
 radio:"School Radio",map:"Mind Map",guide:"Movement Guide",admin:"Administration",
-add:"Add student",delete:"Delete",empty:"No students yet",
-boys:"Boys",girls:"Girls",noStudents:"No students in this section",
-added:"Student added",writeName:"Enter student name",
-radioSaved:"Radio information saved",
-guideStep1:"Step 1: Students stand in their assigned group positions.",
-guideStep2:"Step 2: The two students move to the radio platform.",
-guideStep3:"Step 3: Everyone follows the school's instructions.",
-guideReady:"The guide is ready to play."
+welcome:"Welcome to WE LEADERS 💜💚",
+studentsCount:"Students",groupsCount:"Groups",linesCount:"Assembly lines",
+leadersCount:"Leaders",
+intro:"Organize students, groups, assemblies and school activities.",
+addStudent:"Add a new student",studentName:"Student name",
+namePlaceholder:"Student name",grade:"Grade",group:"Group",
+gender:"Gender",boy:"Boy",girl:"Girl",add:"Add student",
+studentList:"Student list",groupTitle:"Group organization",
+groupDesc:"Distribute students into four separate groups.",
+distribute:"Distribute students",linesTitle:"Assembly organization",
+line1:"Assembly line 1",line2:"Assembly line 2",line3:"Assembly line 3",
+lineNote:"Follow the school's instructions for student positions.",
+radioTitle:"School radio",radioLead:"First student name",
+radioPlaceholder:"Student name",save:"Save",
+noRadio:"No radio students selected yet.",
+mapTitle:"Leaders mind map",platform:"🎤 Radio platform",
+placeOne:"Location one",placeTwo:"Location two",
+placeThree:"Location three",setLocation:"Set by administration",
+guideTitle:"Movement guide",
+guideDesc:"An illustrative 3D scene showing student movement.",
+schoolYard:"School Yard",broadcastPlatform:"🎤 Radio Platform",
+startingPoint:"Group positions",nextPoint:"Next destination",
+leaders:"Leaders",playGuide:"▶ Play guide",stopGuide:"Stop",
+guideReady:"The guide is ready.",
+adminTitle:"Administration",
+securityNotice:"This is a demo. Secure login and shared data require a database.",
+roleTitle:"Permissions",ownerRole:"Owner: creates managers.",
+managerRole:"Manager: edits student data and content.",
+visitorRole:"Visitor: view only.",
+backendNote:"GitHub Pages alone does not provide secure login or shared data.",
+empty:"No students yet",delete:"Delete",added:"Student added",
+writeName:"Enter the student name",radioSaved:"Radio students saved",
+groupName:"Group",
+guideStep1:"Step 1: Students stand in their group positions.",
+guideStep2:"Step 2: Radio students move to the platform.",
+guideStep3:"Step 3: The activity begins."
 }
 };
 
-let lang="ar";
-let students=[];
-let guideTimer=null;
-let guideIndex=0;
+let lang = "ar";
+let students = JSON.parse(localStorage.getItem("wl_students") || "[]");
+let guideTimer = null;
+let guideIndex = 0;
 
-try{
-  students=JSON.parse(localStorage.getItem("wl_students")||"[]");
-  if(!Array.isArray(students))students=[];
-}catch(e){students=[]}
-
-function t(key){
-  return translations[lang][key]||key;
+function t(key) {
+  return translations[lang][key] || key;
 }
 
-function show(id){
-  document.querySelectorAll("main section").forEach(section=>{
+function show(id) {
+  document.querySelectorAll("main section").forEach(section => {
     section.classList.add("hidden");
   });
   document.getElementById(id).classList.remove("hidden");
-
-  if(id==="groups")renderGroups();
 }
 
-function toggleLanguage(){
-  lang=lang==="ar"?"en":"ar";
-  document.documentElement.lang=lang;
-  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+function toggleLanguage() {
+  lang = lang === "ar" ? "en" : "ar";
 
-  const buttons=document.querySelectorAll("nav button");
-  const keys=["home","students","groups","lines","radio","map","guide","admin"];
-  buttons.forEach((button,index)=>{
-    button.textContent=t(keys[index]);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    if (translations[lang][key]) {
+      element.textContent = t(key);
+    }
+  });
+
+  document.querySelectorAll("[data-placeholder]").forEach(element => {
+    element.placeholder = t(element.dataset.placeholder);
   });
 
   render();
-  renderGroups();
 }
 
-function save(){
-  localStorage.setItem("wl_students",JSON.stringify(students));
+function save() {
+  localStorage.setItem("wl_students", JSON.stringify(students));
   render();
-  renderGroups();
 }
 
-function addStudent(){
-  const name=document.getElementById("name").value.trim();
+function addStudent() {
+  const name = document.getElementById("name").value.trim();
 
-  if(!name){
+  if (!name) {
     alert(t("writeName"));
     return;
   }
 
   students.push({
-    id:Date.now()+Math.random(),
-    name:name,
-    grade:document.getElementById("grade").value,
-    group:document.getElementById("group").value,
-    gender:document.getElementById("gender").value
+    id: Date.now() + Math.random(),
+    name: name,
+    grade: document.getElementById("grade").value,
+    group: document.getElementById("group").value,
+    gender: document.getElementById("gender").value
   });
 
-  document.getElementById("name").value="";
+  document.getElementById("name").value = "";
   save();
   alert(t("added"));
 }
 
-function removeStudent(id){
-  if(!confirm(t("delete")+"؟"))return;
-  students=students.filter(student=>student.id!==id);
+function removeStudent(id) {
+  if (!confirm(t("delete") + "?")) return;
+
+  students = students.filter(student => student.id !== id);
   save();
 }
 
-function esc(value){
-  return String(value).replace(/[&<>"']/g,char=>({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[char]);
+function esc(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[character]));
 }
 
-function gradeName(value){
-  const names={
-    g1:lang==="ar"?"الصف الأول":"Grade 1",
-    g2:lang==="ar"?"الصف الثاني":"Grade 2",
-    g3:lang==="ar"?"الصف الثالث":"Grade 3"
+function gradeName(value) {
+  const names = {
+    g1: lang === "ar" ? "الصف الأول" : "Grade 1",
+    g2: lang === "ar" ? "الصف الثاني" : "Grade 2",
+    g3: lang === "ar" ? "الصف الثالث" : "Grade 3"
   };
-  return names[value]||value;
+
+  return names[value] || value;
 }
 
-function groupName(value){
-  const names=["الأولى","الثانية","الثالثة","الرابعة"];
-  return lang==="ar"
-    ?"المجموعة "+names[Number(value)-1]
-    :"Group "+value;
+function groupName(value) {
+  const names = ["الأولى", "الثانية", "الثالثة", "الرابعة"];
+  return lang === "ar"
+    ? "المجموعة " + names[Number(value) - 1]
+    : "Group " + value;
 }
 
-function render(){
-  document.getElementById("total").textContent=students.length;
-  document.getElementById("leaders").textContent=students.length;
+function render() {
+  document.getElementById("total").textContent = students.length;
+  document.getElementById("leaders").textContent = students.length;
 
-  document.getElementById("studentList").innerHTML=
-    students.map(student=>`
-      <div class="student ${student.gender==="girl"?"girl":""}">
+  document.getElementById("studentList").innerHTML =
+    students.map(student => `
+      <div class="student ${student.gender === "girl" ? "girl" : ""}">
         <div>
           <b>${esc(student.name)}</b><br>
           <small>
             ${gradeName(student.grade)} |
             ${groupName(student.group)} |
-            ${student.gender==="girl"?(lang==="ar"?"بنت":"Girl"):(lang==="ar"?"ولد":"Boy")}
+            ${student.gender === "girl" ? t("girl") : t("boy")}
           </small>
         </div>
         <button class="danger" onclick="removeStudent(${student.id})">
           ${t("delete")}
         </button>
       </div>
-    `).join("")||t("empty");
+    `).join("") || t("empty");
 }
 
-function renderGroups(){
-  const day=Number(document.getElementById("distributionDay").value||0);
+/* توزيع كل مجموعة بشكل منفصل */
+function randomize() {
+  const groups = [[], [], [], []];
 
-  const weekdayNames=lang==="ar"
-    ?["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"]
-    :["Sunday","Monday","Tuesday","Wednesday","Thursday"];
+  students.forEach(student => {
+    groups[Number(student.group) - 1].push(student);
+  });
 
-  const html=[1,2,3,4].map(number=>{
-    const members=students.filter(student=>
-      String(student.group)===String(number)
-    );
+  document.getElementById("groupList").innerHTML =
+    groups.map((groupStudents, index) => `
+      <div class="card">
+        <h3>${groupName(index + 1)}</h3>
 
-    const rotate=members.length?day%members.length:0;
-    const ordered=members.slice(rotate).concat(members.slice(0,rotate));
+        <h4>الأولاد</h4>
+        ${groupStudents
+          .filter(student => student.gender === "boy")
+          .map(student => `<div class="student">${esc(student.name)}</div>`)
+          .join("") || "<p>لا يوجد</p>"}
 
+        <h4>البنات</h4>
+        ${groupStudents
+          .filter(student => student.gender === "girl")
+          .map(student => `<div class="student girl">${esc(student.name)}</div>`)
+          .join("") || "<p>لا يوجد</p>"}
+      </div>
+    `).join("");
+}
+
+/* حفظ طالبَي الإذاعة */
+function saveRadio() {
+  const first = document.getElementById("radioName").value.trim();
+
+  if (!first) {
+    alert(t("writeName"));
+    return;
+  }
+
+  const secondInput = document.getElementById("radioName2");
+  const second = secondInput ? secondInput.value.trim() : "";
+
+  const firstGroup = document.getElementById("radioGroup").value;
+  const secondGroup = document.getElementById("radioGroup2")
+    ? document.getElementById("radioGroup2").value
+    : firstGroup;
+
+  const result = second
+    ? `${first} — ${groupName(firstGroup)}<br>${second} — ${groupName(secondGroup)}`
+    : `${first} — ${groupName(firstGroup)}`;
+
+  document.getElementById("radioResult").innerHTML = result;
+
+  document.getElementById("mapLead").textContent =
+    second ? first + " و " + second : first;
+
+  document.getElementById("guidePlatform").textContent =
+    second ? first + " + " + second : first;
+
+  const secondPlatform = document.getElementById("guidePlatform2");
+  if (secondPlatform) {
+    secondPlatform.textContent = second || "—";
+  }
+
+  localStorage.setItem("wl_radio", JSON.stringify({
+    first,
+    second,
+    firstGroup,
+    secondGroup
+  }));
+
+  alert(t("radioSaved"));
+}
+
+/* تشغيل خطوات دليل الحركة */
+function playGuide() {
+  stopGuide();
+
+  guideIndex = 0;
+
+  const status = document.getElementById("guideStatus");
+  const stage = document.querySelector(".guide-stage");
+
+  const steps = ["guideStep1", "guideStep2", "guideStep3"];
+
+  if (stage) stage.classList.add("playing");
+
+  status.textContent = t(steps[guideIndex]);
+
+  guideTimer = setInterval(() => {
+    guideIndex++;
+
+    if (guideIndex >= steps.length) {
+      stopGuide();
+      status.textContent = t("guideReady");
+      return;
+    }
+
+    status.textContent = t(steps[guideIndex]);
+  }, 3000);
+}
+
+function stopGuide() {
+  if (guideTimer) {
+    clearInterval(guideTimer);
+    guideTimer = null;
+  }
+
+  const stage = document.querySelector(".guide-stage");
+  if (stage) stage.classList.remove("playing");
+}
+
+/* استعادة بيانات الإذاعة عند فتح الموقع */
+function loadRadio() {
+  const saved = JSON.parse(localStorage.getItem("wl_radio") || "null");
+
+  if (!saved) return;
+
+  document.getElementById("radioName").value = saved.first || "";
+
+  if (document.getElementById("radioName2")) {
+    document.getElementById("radioName2").value = saved.second || "";
+  }
+
+  document.getElementById("radioGroup").value = saved.firstGroup || "1";
+
+  if (document.getElementById("radioGroup2")) {
+    document.getElementById("radioGroup2").value = saved.secondGroup || "1";
+  }
+
+  document.getElementById("radioResult").innerHTML =
+    saved.second
+      ? `${esc(saved.first)} — ${groupName(saved.firstGroup)}<br>${esc(saved.second)} — ${groupName(saved.secondGroup)}`
+      : `${esc(saved.first)} — ${groupName(saved.firstGroup)}`;
+
+  document.getElementById("mapLead").textContent =
+    saved.second ? saved.first + " و " + saved.second : saved.first;
+
+  document.getElementById("guidePlatform").textContent =
+    saved.first || "—";
+
+  const secondPlatform = document.getElementById("guidePlatform2");
+  if (secondPlatform) secondPlatform.textContent = saved.second || "—";
+}
+
+render();
+loadRadio();
+</script>
+</body>
+</html>
     const boys=ordered.filter(student=>student.gender!=="girl");
     const girls=ordered.filter(student=>student.gender==="girl");
 
